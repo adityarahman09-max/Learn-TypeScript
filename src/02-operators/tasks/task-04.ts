@@ -22,3 +22,20 @@
  *  - Calculate the final payment.
 
  */
+
+const mechanicalKeyboard: number = 850000;
+const wirelessMouse: number = 275000;
+const mousePad: number = 120000;
+const  isPremium = true;
+let totalPurchase: number = mechanicalKeyboard+(wirelessMouse*2)+mousePad;
+
+const discount = totalPurchase>1000000 ? totalPurchase * 10/100 : 0;
+const freeShipping= isPremium ? "Free Shipping" : "Paid Shipping";
+
+console.log("---Payment Information---");
+console.log("Subtotal : ", totalPurchase);
+console.log("Discount : ", discount);
+console.log("Shipping : ", freeShipping)
+console.log("Final Payment : " , totalPurchase - discount )
+
+

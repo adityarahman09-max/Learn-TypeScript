@@ -14,3 +14,22 @@
  * 4. Declare all variables in TypeScript.
  * 5. Display the product data using console.log.
  */
+
+// ini jawaban saya pak, saya  izin menambahkan catatan pak
+const flashSale: [object, object] = [
+    {
+    nama: "Mechanical Keyboard RGB",
+    code: "KBR-001",
+    price: 850000,
+    discount: 0.25,
+    quantity: 2,
+    stock: 18
+    },
+    {
+    name: "Achmad Syaifudin",
+    isPremiumMember: true,
+    freeShipping: true
+    }   
+]
+
+console.log(flashSale)
