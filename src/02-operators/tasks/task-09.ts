@@ -34,3 +34,32 @@
  * - Free shipping eligibility
 
  */
+
+const mechanicalKeyboard: number = 850000;
+const wirelessMouse: number = 275000;
+const monitorStand: number = 420000;
+const voucherValues:number = 100000;
+const premiumMember: boolean = true;
+
+const subTotalPure = mechanicalKeyboard + (wirelessMouse * 2) + monitorStand; 
+let subTotal = mechanicalKeyboard + (wirelessMouse * 2) + monitorStand;
+
+let memberDiscount = premiumMember == true ? subTotal * 10/100 : 0;
+subTotal -= memberDiscount;
+subTotal -= voucherValues;
+
+const rewardPoints = subTotal/50000;
+
+const VAT = subTotal * 11/100;
+const finalPayment = subTotal * VAT;
+
+const freeShipping = premiumMember == true || subTotal > 1500000 ? "Free Shipping" : "Paid Shipping";
+
+console.log(`Produk SubTotal : ${subTotalPure}`);
+console.log(`Membership Discount (10%) : ${memberDiscount}`);
+console.log(`Voucher : ${voucherValues}`);
+console.log(`Payment before Tax : ${subTotal}`);
+console.log(`VAT : ${VAT}`);
+console.log(`Final Payment : ${finalPayment}`);
+console.log(`Rewards Point : ${rewardPoints}`);
+console.log(`Free Shipping : ${freeShipping}`);
