@@ -22,3 +22,11 @@
  *  - Display every parking location.
  *  - Print a blank line after each floor.
  */
+
+console.log("Parkir Management System");
+
+for (let floor = 1 ; floor <=5 ; floor++){
+    for(let Slot=1 ; Slot<=20 ; Slot++){
+        console.log(`Floor ${floor} - Slot ${Slot}`);
+    }
+}

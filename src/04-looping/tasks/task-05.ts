@@ -24,3 +24,33 @@ const scores = [
     67, 79, 94, 83, 71,
     96, 65, 87, 74, 90
 ];
+ 
+let goldMedal : number = 0;
+let silverMedal : number = 0;
+let bronzeMedal : number = 0;
+let studentWithoutMedal : number = 0;
+let averageCompetition: number = 0;
+let totalscore : number = 0;
+
+for (const amount of scores){
+
+    totalscore += amount;
+
+    if(amount >= 95){
+        goldMedal ++;
+    }else if(amount < 95 && amount >= 85){
+        silverMedal ++;
+    }else if(amount < 85 && amount >= 75){
+        bronzeMedal ++;
+    }else{
+        studentWithoutMedal ++
+    }
+}
+
+averageCompetition = totalscore / scores.length;
+
+console.log(`Gold Medal : ${goldMedal}`);
+console.log(`Silver Medal : ${silverMedal}`);
+console.log(`Bronze Medal : ${bronzeMedal}`);
+console.log(`Student Without No Medal : ${studentWithoutMedal}`);
+console.log(`Average Competition : ${averageCompetition}`);

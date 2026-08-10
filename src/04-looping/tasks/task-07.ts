@@ -8,7 +8,12 @@
  * - Calculate the attendance percentage.
  */
 
-const attendances = [
+type AttendanceRecord = {
+  name: string;
+  present: boolean;
+};
+
+const attendances: AttendanceRecord[] = [
   { name: "Alya", present: true },
   { name: "Budi", present: true },
   { name: "Citra", present: false },
@@ -18,3 +23,26 @@ const attendances = [
   { name: "Gita", present: true },
   { name: "Hana", present: false }
 ];
+
+let presentCount: number = 0;
+let absentCount: number = 0;
+const absentStudentNames: string[] = [];
+
+for (const student of attendances) {
+  if (student.present) {
+    presentCount++;
+  } else {
+    absentCount++;
+    absentStudentNames.push(student.name);
+  }
+}
+
+const totalStudents: number = attendances.length;
+const attendancePercentage: number = (presentCount / totalStudents) * 100;
+
+console.log(`Present Students Count : ${presentCount}`);
+console.log(`Absent Students Count  : ${absentCount}`);
+console.log(`Absent Students Names  : ${absentStudentNames}`);
+console.log(`Attendance Percentage  : ${attendancePercentage}%`);
+
+

@@ -13,5 +13,12 @@
  * 1. Create a program using a for loop.
  * 2. Display the attendance message for every student.
  * 3. After the loop finishes, display: "Attendance verification completed"
+ * 
 
  */
+
+console.log("Checking Atttendece System");
+
+for (let i = 1 ; i <= 30 ; i++){
+    console.log(`Checking Attendance for Student ${i}` );
+}

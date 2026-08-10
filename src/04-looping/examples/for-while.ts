@@ -1,4 +1,4 @@
-/**
+  /**
  * Module 04: Looping — Examples
  *
  * Run: npm run example src/04-looping/examples/for-while.ts
@@ -27,7 +27,7 @@ do {
 } while (num < 3);
 
 // for...of — iterate over array values
-console.log("\n=== for...of ===");
+console.log("\n=== for...of ===");     
 const fruits = ["apple", "banana", "cherry"];
 for (const fruit of fruits) {
   console.log(fruit);
@@ -35,7 +35,7 @@ for (const fruit of fruits) {
 
 // for...in — iterate over object keys
 console.log("\n=== for...in ===");
-const student = { name: "Alice", age: 20, major: "CS" };
+const student =   { name: "Alice", age: 20, major: "CS" };
 for (const key in student) {
   console.log(`${key}: ${student[key as keyof typeof student]}`);
 }

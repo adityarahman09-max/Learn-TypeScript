@@ -18,3 +18,31 @@ const stocks = [
     9, 0, 55, 13, 2,
     30, 8, 41, 0, 16
 ];
+
+let outOfStock: number = 0;
+let lowStock: number = 0;
+let safeStock: number = 0;
+let totalInventory : number = 0;
+let averageStockQuantity: number = 0;
+
+for(const stock of stocks){
+    
+    totalInventory += stock;
+
+    if(stock == 0){
+        outOfStock ++;
+    }else if(stock < 10){
+        lowStock ++;
+    }else{
+        safeStock ++;
+    }
+
+}
+
+averageStockQuantity = totalInventory / stocks.length;
+
+console.log(`Number of Out of Stock : ${outOfStock}`);
+console.log(`Number of Low Stock : ${lowStock}`);
+console.log(`Number of Safe Stock : ${safeStock}`);
+console.log(`Total Inventory : ${totalInventory}`);
+console.log(`Average Stock Quantity : ${averageStockQuantity}`);
