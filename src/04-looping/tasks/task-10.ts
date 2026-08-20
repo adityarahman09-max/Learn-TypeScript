@@ -39,18 +39,18 @@ let studentRevise: number = 0;
 let nameDidNotSubmitted: string[] = [];
 let nameMustRevise: string[] = [];
 
-for(const submission of submissions){
-   
-    if(submission.submitted){
+for (const submission of submissions) {
+
+    if (submission.submitted) {
         submittedAsignment++
-    }else{
+    } else {
         didNotSubmitted++
         nameDidNotSubmitted.push(submission.student);
     }
 
-    if(submission.score>=75){
+    if (submission.score >= 75) {
         studentPassed++;
-    }else if(submission.score<75){
+    } else if (submission.score < 75) {
         studentRevise++
         nameMustRevise.push(submission.student);
     }
