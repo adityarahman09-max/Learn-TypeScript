@@ -8,6 +8,7 @@ type Order = {
     total: number
     paid: boolean
 }
+
 const orders: Order[] = [
     {
         id: "ORD001",
@@ -42,8 +43,8 @@ const orders: Order[] = [
  * ORD002 → UNPAID
  * ...
  * 
- * 2. Determine Shipping Category.
  * Business rules:
+ * 2. Determine Shipping Category.
  * - Total ≥ Rp1,500,000 → FREE SHIPPING
  * - Total ≥ Rp500,000 → STANDARD SHIPPING
  * - Otherwise → ECONOMY SHIPPING
@@ -57,23 +58,42 @@ type PaymentStatusOrder = Order & { status: ORDER_STATUS }
 type ShippingCategoryOrder = Order & { shippingStatus: SHIPPING_CATEGORY }
 
 function getPaymentStatus(selectedOrder: Order): PaymentStatusOrder {
-    // implement to determine payment status order
-    // this function return order data within status or order
-    return;
+    const status: ORDER_STATUS = selectedOrder.paid ? "PAID" : "UNPAID";
+    return {
+        ...selectedOrder,
+        status
+    };
 }
 
-
 function getShippingCategory(selectedOrder: Order): ShippingCategoryOrder {
-    // implement to determine shipping category of order
-    // this function return order data within shipping cateogory
-    return;
+    let shippingStatus: SHIPPING_CATEGORY;
+
+    if (selectedOrder.total >= 1500000) {
+        shippingStatus = "FREE SHIPPING";
+    } else if (selectedOrder.total >= 500000 && selectedOrder.total <= 1500000) {
+        shippingStatus = "STANDARD SHIPPING";
+    } else {
+        shippingStatus = "ECONOMY SHIPPING";
+    }
+
+    return {
+        ...selectedOrder,
+        shippingStatus
+    };
 }
 
 function processOrder<T>(
     arr: Order[],
-    callback: (order: Order) => T): T[] {
-    // implement for callback
-    return;
+    callback: (order: Order) => T
+): T[] {
+    const results: T[] = []
+
+    arr.forEach(item => {
+        const result = callback(item)
+        results.push(result)
+    })
+
+    return results
 }
 
 const orderWithPaymentStatus = processOrder(orders, getPaymentStatus)

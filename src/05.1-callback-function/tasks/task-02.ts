@@ -1,7 +1,7 @@
 /**
  * Teacher has list of student score:
  */
-const scores = [85, 72, 91, 64, 88];
+const scores: number[] = [85, 72, 91, 64, 88];
 
 /**
  * The teacher wants to process the scores in different ways.
@@ -29,18 +29,42 @@ function processScores(
     scores: number[],
     callback: (score: number) => void
 ): void {
-    // implementation
+    for (const item of scores) {
+        callback(item)
+
+    }
+
 }
 
 function printScore(score: number) {
-    // implementation
+    console.log(`Score : ${score}`)
 }
 
-function showGrade(score: number) {
-    // implementation
+function checkPass(score: number): void {
+    const status = score >= 70 ? "Passed" : "Failed";
+    console.log(`Score ${score} is ${status}`);
+}
+
+function showGrade(score: number): void {
+
+    let grade: string;
+
+    if (score >= 90) {
+        grade = "A"
+    } else if (score >= 80) {
+        grade = "B"
+    } else if (score >= 70) {
+        grade = "C"
+    } else {
+        grade = "D"
+    }
+
+    console.log(`Your Grade is ${grade}`)
 }
 
 
 // implementation of callback function
 processScores(scores, printScore)
 processScores(scores, showGrade)
+processScores(scores, checkPass)
+

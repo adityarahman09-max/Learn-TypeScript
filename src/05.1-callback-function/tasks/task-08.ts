@@ -2,7 +2,14 @@
  * A company has a simple data-processing engine used to analyze transaction records.
  */
 
-const transactions = [
+type Transaction = {
+    id: string;
+    customer: string;
+    amount: number;
+    status: string;
+};
+
+const transactions: Transaction[] = [
     {
         id: "TRX001",
         customer: "Alya",
@@ -46,3 +53,57 @@ const transactions = [
  *   - Pending transactions → 1%
  *   - Cancelled transactions → 0%
  */
+
+type VALUES_TYPES = "HIGH VALUE" | "MEDIUM VALUE" | "LOW VALUE" 
+let valuesType: VALUES_TYPES = "HIGH VALUE"
+
+function processData<T, R>(
+    arr: T[],
+    callback: (item: T) => R
+): R[] {
+    const result: R[] = [];
+    for (const item of arr) {
+        result.push(callback(item));
+    }
+    return result;
+}
+
+function extractCustomerName(tx: Transaction): string {
+    return tx.customer;
+}
+
+function determineCategory(tx: Transaction): string {
+    let category: VALUES_TYPES = "LOW VALUE";
+
+    if (tx.amount >= 2000000) {
+        category = "HIGH VALUE";
+    } else if (tx.amount >= 1000000) {
+        category = "MEDIUM VALUE";
+    }
+
+    return `Name : ${tx.customer.padEnd(5)} | Value : ${category}`;
+}
+
+function calculateFee(tx: Transaction): string {
+    let fee = 0;
+
+    if (tx.status === "paid") {
+        fee = tx.amount * 0.02; // 2% fee
+    } else if (tx.status === "pending") {
+        fee = tx.amount * 0.01; // 1% fee
+    } else {
+        fee = 0; // 0% fee
+    }
+
+    return `Name : ${tx.customer.padEnd(5)} | Fee : ${fee}`;
+}
+
+const customerNames = processData(transactions, extractCustomerName);
+
+const categories = processData(transactions, determineCategory);
+
+const platformFees = processData(transactions, calculateFee);
+
+console.log("Customer Names:", customerNames);
+console.log("Categories:", categories);
+console.log("Platform Fees:", platformFees);

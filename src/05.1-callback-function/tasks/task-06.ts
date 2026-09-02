@@ -26,7 +26,7 @@ type Employee = {
     salary: number
     performance: number
 }
-type PERFORMANCE_STATUS = "Exceeds Expectations" | "Meets Expectations" | "Needs Improvement"
+type PERFORMANCE_STATUS = "Exceeds Expectations" | "Meets Expectations" | "Needs Improvement" |"Unsatisfactory"
 type EMPLOYEE_BONUS = Employee & { bonus: number }
 type EMPLOYEE_PERFORMANCE = Employee & { status: PERFORMANCE_STATUS }
 
@@ -40,18 +40,44 @@ const employees: Employee[] = [
 
 
 function calculateFinalSalary(selectedEmployee: Employee): EMPLOYEE_BONUS {
-    // implementation: this function return employee data with bonus and updated final salary
-    return;
+    let bonus: number = 0
+    if (selectedEmployee.performance >= 90) {
+        bonus = selectedEmployee.performance * 0.15
+    } else if (selectedEmployee.performance >= 80) {
+        bonus = selectedEmployee.performance * 0.10
+    } else if (selectedEmployee.performance >= 70) {
+        bonus = selectedEmployee.performance * 0.05
+    } else {
+        bonus = 0
+    }
+    return {
+        ...selectedEmployee,
+        bonus
+    };
 }
+
 function getPerformanceStatus(selectedEmployee: Employee): EMPLOYEE_PERFORMANCE {
-    return;
+    let status: PERFORMANCE_STATUS
+    if (selectedEmployee.performance >= 90) {
+        status = "Exceeds Expectations"
+    } else if (selectedEmployee.performance >= 80) {
+        status = "Meets Expectations"
+    } else if (selectedEmployee.performance >= 70) {
+        status = "Needs Improvement"
+    } else {
+        status = "Unsatisfactory"
+    }
+    return{
+        ...selectedEmployee,
+        status
+    };
 }
 
 function employeeProcess<T>(
     arr: Employee[],
     callback: (employee: Employee) => T
 ): T[] {
-    return;
+    return arr.map(callback);
 }
 
 const employeeWithFinalSalary = employeeProcess(employees, calculateFinalSalary)
@@ -61,4 +87,3 @@ console.log(`====== EMPLOYEES WITH FINAL SALARY + BONUS ======`);
 console.log({ employees: employeeWithFinalSalary })
 console.log(`====== EMPLOYEES WITH PERFORMANCE STATUS ======`);
 console.log({ employees: employeeWithPerformanceStatus })
-
